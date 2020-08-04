@@ -9,17 +9,27 @@
       "prefix": "my-org",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "customWebpackConfig": {
+              "path": "apps/my-app/extra-webpack.config.js",
+              "mergeStrategies": {
+                "optimization.minimizer": "replace",
+                "externals": "replace"
+              }
+            },
             "outputPath": "dist/apps/my-app",
             "index": "apps/my-app/src/index.html",
             "main": "apps/my-app/src/main.ts",
             "polyfills": "apps/my-app/src/polyfills.ts",
             "tsConfig": "apps/my-app/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/my-app/src/favicon.ico", "apps/my-app/src/assets"],
-            "styles": ["apps/my-app/src/styles.css"],
-            "scripts": []
+            "assets": [],
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": []
+            },
+            "styles": []
           },
           "configurations": {
             "production": {
