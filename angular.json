@@ -144,6 +144,46 @@
         }
       },
       "schematics": {}
+    },
+    "my-pa-lib": {
+      "projectType": "library",
+      "root": "libs/my-pa-lib",
+      "sourceRoot": "libs/my-pa-lib/src",
+      "prefix": "my-org",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/my-pa-lib/tsconfig.lib.json",
+            "project": "libs/my-pa-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/my-pa-lib/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/my-pa-lib/tsconfig.lib.json",
+              "libs/my-pa-lib/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/my-pa-lib/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/my-pa-lib/jest.config.js",
+            "tsConfig": "libs/my-pa-lib/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/my-pa-lib/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {}
     }
   },
   "cli": {
